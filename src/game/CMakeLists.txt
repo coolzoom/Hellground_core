@@ -16,6 +16,9 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/dep/recastnavigation/
   ${CMAKE_CURRENT_SOURCE_DIR}/vmap
   ${CMAKE_CURRENT_SOURCE_DIR}/movemap
+  ${CMAKE_SOURCE_DIR}/dep/include/g3dlite
+  ${CMAKE_SOURCE_DIR}/dep/recastnavigation/Detour
+  ${CMAKE_SOURCE_DIR}/dep/recastnavigation
   ${CMAKE_SOURCE_DIR}/dep/include
   ${CMAKE_SOURCE_DIR}/src/game/PlayerBots
   ${CMAKE_SOURCE_DIR}/src/shared
@@ -26,8 +29,17 @@ include_directories(
   ${CMAKE_BINARY_DIR}
   ${CMAKE_BINARY_DIR}/src/shared
   ${MYSQL_INCLUDE_DIR}
+  ${TBB_INCLUDE_DIRS}
   ${ACE_INCLUDE_DIR}
+  ${OPENSSL_INCLUDE_DIR}
+  ${ZLIB_INCLUDE_DIRS}
 )
+
+if(WIN32)
+  include_directories(
+    ${CMAKE_SOURCE_DIR}/dep/windows/include
+  )
+endif()
 
 source_group("Object"
   REGULAR_EXPRESSION .*
