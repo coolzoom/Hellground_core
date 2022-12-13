@@ -35,7 +35,7 @@ npc_fhwoor
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*######
 ## npcs_ashyen_and_keleth

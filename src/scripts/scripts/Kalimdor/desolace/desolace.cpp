@@ -32,7 +32,7 @@ npc_rokaro
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*######
 ## npc_aged_dying_ancient_kodo. Quest 5561

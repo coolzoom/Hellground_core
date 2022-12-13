@@ -25,7 +25,7 @@ SDCategory: Scarlet Monastery
 EndScriptData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 #define SAY_AGGRO                   -1189000
 #define SAY_WHIRLWIND               -1189001

@@ -25,7 +25,7 @@ SDCategory: Npc
 EndScriptData */
 
 #include "ScriptedPch.h"
-#include "follower_ai.h"
+#include "ScriptedFollowerAI.h"
 
 const float MAX_PLAYER_DISTANCE = 100.0f;
 

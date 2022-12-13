@@ -57,7 +57,7 @@ npc_doctor_vomisa
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*######
 ## npc_manaforge_control_console

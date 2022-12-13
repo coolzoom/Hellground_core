@@ -28,7 +28,7 @@ EndScriptData */
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 #include "def_wailing_caverns.h"
 
 /*######

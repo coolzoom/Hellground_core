@@ -26,7 +26,7 @@ EndScriptData */
 
 #include "ScriptedPch.h"
 #include "def_serpent_shrine.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 #define SAY_AGGRO                   -1548021
 #define SAY_GAIN_BLESSING           -1548022

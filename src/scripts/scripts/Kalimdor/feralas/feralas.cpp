@@ -25,7 +25,7 @@ SDCategory: Feralas
 EndScriptData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*######
 ## npc_gregan_brewspewer

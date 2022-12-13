@@ -40,7 +40,7 @@ npc_stinky
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*######
 ## npc_cassa_crimsonwing

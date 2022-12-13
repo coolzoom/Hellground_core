@@ -40,7 +40,7 @@ npc_death_ravager
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 #include <cmath>
 
 /*######

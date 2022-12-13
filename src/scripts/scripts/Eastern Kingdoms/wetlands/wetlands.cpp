@@ -31,7 +31,7 @@ npc_tapoke_slim_jahn
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*######
 ## npc_tapoke_slim_jahn

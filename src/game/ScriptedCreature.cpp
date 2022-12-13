@@ -23,7 +23,7 @@
 #include "Item.h"
 #include "Spell.h"
 #include "ObjectMgr.h"
-
+#include "ScriptedCreature.h"
 // Spell summary for ScriptedAI::SelectSpell
 struct TSpellSummary
 {

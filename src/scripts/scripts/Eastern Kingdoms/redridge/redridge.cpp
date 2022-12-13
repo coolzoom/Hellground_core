@@ -17,7 +17,7 @@
 */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 #define QUEST_MISSING_IN_ACTION 219
 

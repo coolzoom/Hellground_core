@@ -29,7 +29,7 @@ npc_willix
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 #include "def_razorfen_kraul.h"
 
 #define SAY_READY -1047000

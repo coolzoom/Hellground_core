@@ -32,7 +32,7 @@ npc_tirion_fordring
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 //id8530 - cannibal ghoul
 //id8531 - gibbering ghoul

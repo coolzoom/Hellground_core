@@ -33,7 +33,7 @@ npc_clintar_dreamwalker
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*######
 ## npc_bunthen_plainswind

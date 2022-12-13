@@ -54,7 +54,7 @@ npc_lady_dena_kennedy
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*######
 ## mob_unkor_the_ruthless

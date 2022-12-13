@@ -32,7 +32,7 @@ npc_infused_crystal
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*######
 ## mobs_mana_tapped

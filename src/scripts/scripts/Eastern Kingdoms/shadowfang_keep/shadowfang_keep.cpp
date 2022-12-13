@@ -30,7 +30,7 @@ npc_shadowfang_prisoner
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 #include "def_shadowfang_keep.h"
 
 /*######

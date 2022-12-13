@@ -33,7 +33,7 @@ go_princess_stillpine_cage
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*######
 ## mob_webbed_creature

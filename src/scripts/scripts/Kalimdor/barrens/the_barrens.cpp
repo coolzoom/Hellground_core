@@ -35,7 +35,7 @@ npc_wizzlecrank_shredder
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*######
 ## npc_beaten_corpse

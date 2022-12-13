@@ -31,8 +31,8 @@ npc_ringo
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
-#include "follower_ai.h"
+#include "ScriptedEscortAI.h"
+#include "ScriptedFollowerAI.h"
 
 #define SAY_READY -1000200
 #define SAY_AGGRO1 -1000201

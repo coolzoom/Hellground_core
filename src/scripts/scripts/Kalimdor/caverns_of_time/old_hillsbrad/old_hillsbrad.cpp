@@ -33,7 +33,7 @@ erozion_image
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 #include "def_old_hillsbrad.h"
 
 #define QUEST_ENTRY_HILLSBRAD   10282

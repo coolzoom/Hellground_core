@@ -29,7 +29,7 @@ npcs_riverbreeze_and_silversky
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "follower_ai.h"
+#include "ScriptedFollowerAI.h"
 
 /*######
 ## npcs_riverbreeze_and_silversky

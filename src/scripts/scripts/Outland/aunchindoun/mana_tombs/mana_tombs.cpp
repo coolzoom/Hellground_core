@@ -30,7 +30,7 @@ EndContentData */
 
 #include "ScriptedPch.h"
 #include "def_mana_tombs.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 enum
 {

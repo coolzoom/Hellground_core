@@ -30,7 +30,7 @@ npc_mist
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "follower_ai.h"
+#include "ScriptedFollowerAI.h"
 
 /*####
 # npc_mist

@@ -44,7 +44,7 @@ npc_rethhedron_the_subduer
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 #include "GuardAI.h"
 
 /*######

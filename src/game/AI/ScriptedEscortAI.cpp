@@ -25,7 +25,7 @@ SDCategory: Npc
 EndScriptData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 enum ePoints
 {

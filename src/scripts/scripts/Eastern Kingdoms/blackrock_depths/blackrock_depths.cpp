@@ -38,7 +38,7 @@ npc_rocknot
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 #include "def_blackrock_depths.h"
 
 #define C_GRIMSTONE         10096

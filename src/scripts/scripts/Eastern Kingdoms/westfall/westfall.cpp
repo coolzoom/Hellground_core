@@ -29,7 +29,7 @@ npc_defias_traitor
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*#####
 # npc_daphne_stilwell

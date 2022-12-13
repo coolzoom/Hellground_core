@@ -31,7 +31,7 @@ npc_andorhal_tower
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*######
 ## npcs_dithers_and_arbington

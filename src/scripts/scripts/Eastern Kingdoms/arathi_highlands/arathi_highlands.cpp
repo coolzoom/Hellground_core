@@ -29,7 +29,7 @@ npc_professor_phizzlethorpe
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 /*######
 ## npc_professor_phizzlethorpe

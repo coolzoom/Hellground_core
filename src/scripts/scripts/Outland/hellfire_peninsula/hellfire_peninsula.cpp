@@ -50,8 +50,8 @@ npc_deranged_helboar
 EndContentData */
 
 #include "ScriptedPch.h"
-#include "escort_ai.h"
-#include "follower_ai.h"
+#include "ScriptedEscortAI.h"
+#include "ScriptedFollowerAI.h"
 
 /*######
 ## npc_aeranas

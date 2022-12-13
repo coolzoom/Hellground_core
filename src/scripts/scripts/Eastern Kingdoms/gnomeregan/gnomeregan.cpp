@@ -17,7 +17,7 @@
 */
 
 #include "ScriptedPch.h"
-#include "follower_ai.h"
+#include "ScriptedFollowerAI.h"
 
 enum eKernobee
 {

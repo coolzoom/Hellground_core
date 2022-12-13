@@ -26,7 +26,7 @@ EndScriptData */
 
 #include "ScriptedPch.h"
 #include "def_sethekk_halls.h"
-#include "escort_ai.h"
+#include "ScriptedEscortAI.h"
 
 #define ENCOUNTERS          4
 
