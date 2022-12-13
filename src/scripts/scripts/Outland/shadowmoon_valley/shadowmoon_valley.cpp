@@ -44,7 +44,7 @@ npc_overlord_orbarokh
 npc_thane_yoregar
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 

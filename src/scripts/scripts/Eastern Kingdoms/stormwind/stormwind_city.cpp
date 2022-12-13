@@ -32,7 +32,7 @@ npc_general_marcus_jonathan
 npc_lady_katrana_prestor
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 /*######

@@ -29,7 +29,7 @@ npc_prospector_remtravel
 npc_therylune
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 #include "follower_ai.h"
 

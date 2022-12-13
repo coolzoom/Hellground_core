@@ -31,7 +31,7 @@ npc_darrowshire_spirit
 npc_tirion_fordring
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 //id8530 - cannibal ghoul

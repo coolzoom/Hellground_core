@@ -24,7 +24,7 @@ SDComment: SDComment: Timers may incorrect
 SDCategory: Karazhan
 EndScriptData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "def_karazhan.h"
 
 #define EMOTE_SUMMON                "An ancient being awakens in the distance..."

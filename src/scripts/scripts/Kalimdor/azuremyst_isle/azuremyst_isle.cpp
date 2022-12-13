@@ -39,7 +39,7 @@ go_ravager_cage
 npc_death_ravager
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 #include <cmath>
 

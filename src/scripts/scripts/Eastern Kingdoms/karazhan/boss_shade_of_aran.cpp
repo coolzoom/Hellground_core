@@ -29,7 +29,7 @@ EndScriptData
 
 WHAT THE FUCK IS GOING ON WITH THESE TIMERS? O_o*/
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "../../special/simple_ai.h"
 #include "def_karazhan.h"
 #include "GameObject.h"

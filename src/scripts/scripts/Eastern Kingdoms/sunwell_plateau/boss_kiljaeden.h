@@ -20,7 +20,7 @@
 #ifndef BOSS_KILJAEDEN_H
 #define BOSS_KILJAEDEN_H
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 
 /*** Speech and sounds***/
 enum Speeches

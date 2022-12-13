@@ -53,7 +53,7 @@ npc_skywing
 npc_lady_dena_kennedy
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 /*######

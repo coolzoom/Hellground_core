@@ -32,7 +32,7 @@ npc_taretha
 erozion_image
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 #include "def_old_hillsbrad.h"
 

@@ -43,7 +43,7 @@ npc_fel_cannon
 npc_rethhedron_the_subduer
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 #include "GuardAI.h"
 

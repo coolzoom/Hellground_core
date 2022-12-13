@@ -28,7 +28,7 @@ EndScriptData */
 npc_professor_phizzlethorpe
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 /*######

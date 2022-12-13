@@ -56,7 +56,7 @@ npc_trader_marid
 npc_doctor_vomisa
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 /*######

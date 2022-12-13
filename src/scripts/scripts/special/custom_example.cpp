@@ -24,7 +24,7 @@ SDComment: Short custom scripting example
 SDCategory: Script Examples
 EndScriptData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "ObjectMgr.h"
 
 // **** This script is designed as an example for others to build on ****

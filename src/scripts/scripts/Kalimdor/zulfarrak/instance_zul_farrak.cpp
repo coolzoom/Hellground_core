@@ -27,7 +27,7 @@ BLAH BLAH. CODE TO REWRITE. WTF IS GOING ON WITH wavecounter ??
 
 */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "def_zul_farrak.h"
 
 #define ENCOUNTERS 2

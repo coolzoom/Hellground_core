@@ -28,7 +28,7 @@ EndScriptData */
 npc_willix
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 #include "def_razorfen_kraul.h"
 

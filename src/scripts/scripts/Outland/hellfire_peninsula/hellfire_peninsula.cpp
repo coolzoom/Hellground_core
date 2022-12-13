@@ -49,7 +49,7 @@ npc_viera
 npc_deranged_helboar
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 #include "follower_ai.h"
 

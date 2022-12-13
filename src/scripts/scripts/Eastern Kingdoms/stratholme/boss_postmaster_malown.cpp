@@ -24,7 +24,7 @@ SDComment:
 SDCategory: Stratholme
 EndScriptData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "def_stratholme.h"
 
 //Spell ID to summon this guy is 24627 "Summon Postmaster Malown"

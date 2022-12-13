@@ -34,7 +34,7 @@ go_panther_cage
 npc_enraged_panther
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 #include "follower_ai.h"
 

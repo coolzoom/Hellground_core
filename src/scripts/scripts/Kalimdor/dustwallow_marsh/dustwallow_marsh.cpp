@@ -39,7 +39,7 @@ npc_private_hendel
 npc_stinky
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 /*######

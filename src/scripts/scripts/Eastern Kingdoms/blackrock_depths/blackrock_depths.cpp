@@ -37,7 +37,7 @@ npc_tobias_seecher
 npc_rocknot
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 #include "def_blackrock_depths.h"
 

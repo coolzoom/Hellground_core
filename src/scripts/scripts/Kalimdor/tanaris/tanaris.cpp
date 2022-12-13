@@ -36,7 +36,7 @@ go_landmark_treasure
 npc_tooga
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 #include "follower_ai.h"
 

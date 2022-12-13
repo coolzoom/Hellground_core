@@ -31,7 +31,7 @@ EndContentData */
 ##npc_galen_goodward
 #########*/
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 enum eGalen

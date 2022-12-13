@@ -26,7 +26,7 @@ EndScriptData */
 
 //TODO: Integrate all 4 EnterEvadeModes into illidari_council_baseAI::EnterEvadeMode().
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "def_black_temple.h"
 
 //Speech'n'Sounds

@@ -29,7 +29,7 @@ npc_astor_hadren
 npc_deathstalker_erland
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 /*######

@@ -32,7 +32,7 @@ npc_clintar_spirit
 npc_clintar_dreamwalker
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 /*######

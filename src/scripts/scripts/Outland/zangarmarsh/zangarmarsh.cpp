@@ -34,7 +34,7 @@ npc_baby_murloc
 npc_fhwoor
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 /*######

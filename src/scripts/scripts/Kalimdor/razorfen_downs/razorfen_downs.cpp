@@ -30,7 +30,7 @@ npc_belnistrasz
 EndContentData */
 
 //#include "ScriptedPch.h"
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "GossipDef.h"
 #include "razorfen_downs.h"
 #include "escort_ai.h"

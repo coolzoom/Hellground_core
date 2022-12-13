@@ -24,7 +24,7 @@ SDComment:
 SDCategory: Blackwing Lair
 EndScriptData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "def_blackwing_lair.h"
 
 struct instance_blackwing_lair: public ScriptedInstance

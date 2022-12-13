@@ -45,7 +45,7 @@ npc_gnomish_flame_turret
 npc_voodoo_servant          100%    AI for Voodoo trinket with entry 24529
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "BattleGround.h"
 #include "Totem.h"
 #include "PetAI.h"

@@ -29,7 +29,7 @@ npc_blood_knight_stillblade
 npc_silvermoon_guard
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 
 /*#######
 # npc_blood_knight_stillblade

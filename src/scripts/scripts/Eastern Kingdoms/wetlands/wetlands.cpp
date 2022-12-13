@@ -30,7 +30,7 @@ npc_mikhail
 npc_tapoke_slim_jahn
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 /*######

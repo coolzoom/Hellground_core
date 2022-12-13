@@ -31,7 +31,7 @@ npc_apprentice_mirveda
 npc_infused_crystal
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 /*######

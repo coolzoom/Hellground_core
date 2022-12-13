@@ -32,7 +32,7 @@ npc_princess_stillpine
 go_princess_stillpine_cage
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 /*######

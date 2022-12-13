@@ -30,7 +30,7 @@ npc_a-me
 npc_ringo
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 #include "follower_ai.h"
 

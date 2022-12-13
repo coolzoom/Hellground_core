@@ -31,7 +31,7 @@ npc_melizza_brimbuzzle
 npc_rokaro
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 /*######

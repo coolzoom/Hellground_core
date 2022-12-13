@@ -32,7 +32,7 @@ mob_depth_charge
 mob_spirit_of_azuregos
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 
 /*######
 ## mobs_spitelashes

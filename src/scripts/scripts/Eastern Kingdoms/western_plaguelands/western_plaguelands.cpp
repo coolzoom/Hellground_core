@@ -30,7 +30,7 @@ npc_the_scourge_cauldron
 npc_andorhal_tower
 EndContentData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "escort_ai.h"
 
 /*######

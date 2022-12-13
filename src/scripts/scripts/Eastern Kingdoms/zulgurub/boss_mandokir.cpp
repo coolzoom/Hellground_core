@@ -24,7 +24,7 @@ SDComment: Implement ghosts that offer resurrection. Ohgan function needs improv
 SDCategory: Zul'Gurub
 EndScriptData */
 
-#include "precompiled.h"
+#include "ScriptedPch.h"
 #include "def_zulgurub.h"
 
 struct boss_mandokirAI : public ScriptedAI
