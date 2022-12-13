@@ -27,7 +27,7 @@
 #include "Timer.h"
 #include "Unit.h"
 
-#include "movemap/PathFinder.h"
+#include "PathFinder.h"
 
 class TargetedMovementGeneratorBase
 {

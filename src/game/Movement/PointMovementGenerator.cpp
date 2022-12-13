@@ -26,8 +26,8 @@
 #include "MapManager.h"
 #include "World.h"
 
-#include "movement/MoveSplineInit.h"
-#include "movement/MoveSpline.h"
+#include "MoveSplineInit.h"
+#include "MoveSpline.h"
 
 //----- Point Movement Generator
 template<class UNIT>

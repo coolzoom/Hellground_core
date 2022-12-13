@@ -28,8 +28,8 @@
 #include "TargetedMovementGenerator.h"
 #include "WaypointMovementGenerator.h"
 #include "RandomMovementGenerator.h"
-#include "movement/MoveSpline.h"
-#include "movement/MoveSplineInit.h"
+#include "MoveSpline.h"
+#include "MoveSplineInit.h"
 
 #include <cassert>
 

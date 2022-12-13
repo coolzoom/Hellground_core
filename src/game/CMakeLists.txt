@@ -11,9 +11,31 @@ if(WIN32)
 endif()
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
-  ${CMAKE_SOURCE_DIR}/dep/g3dlite/include
-  ${CMAKE_SOURCE_DIR}/dep/recastnavigation/Detour
-  ${CMAKE_SOURCE_DIR}/dep/recastnavigation/
+  ${CMAKE_CURRENT_SOURCE_DIR}/AI
+  ${CMAKE_CURRENT_SOURCE_DIR}/Anticheat
+  ${CMAKE_CURRENT_SOURCE_DIR}/Anticheat/WardenAnticheat
+  ${CMAKE_CURRENT_SOURCE_DIR}/AuctionHouse
+  ${CMAKE_CURRENT_SOURCE_DIR}/Battlegrounds
+  ${CMAKE_CURRENT_SOURCE_DIR}/Chat
+  ${CMAKE_CURRENT_SOURCE_DIR}/Commands
+  ${CMAKE_CURRENT_SOURCE_DIR}/Database
+  ${CMAKE_CURRENT_SOURCE_DIR}/Group
+  ${CMAKE_CURRENT_SOURCE_DIR}/Guild
+  ${CMAKE_CURRENT_SOURCE_DIR}/Handlers
+  ${CMAKE_CURRENT_SOURCE_DIR}/LFG
+  ${CMAKE_CURRENT_SOURCE_DIR}/Mail
+  ${CMAKE_CURRENT_SOURCE_DIR}/Maps
+  ${CMAKE_CURRENT_SOURCE_DIR}/Maps/Pool
+  ${CMAKE_CURRENT_SOURCE_DIR}/Movement
+  ${CMAKE_CURRENT_SOURCE_DIR}/Movement/spline
+  ${CMAKE_CURRENT_SOURCE_DIR}/Objects
+  ${CMAKE_CURRENT_SOURCE_DIR}/OutdoorPvP
+  ${CMAKE_CURRENT_SOURCE_DIR}/PacketBroadcast
+  ${CMAKE_CURRENT_SOURCE_DIR}/PlayerBots
+  ${CMAKE_CURRENT_SOURCE_DIR}/Protocol
+  ${CMAKE_CURRENT_SOURCE_DIR}/Spells
+  ${CMAKE_CURRENT_SOURCE_DIR}/Threat
+  ${CMAKE_CURRENT_SOURCE_DIR}/Transports
   ${CMAKE_CURRENT_SOURCE_DIR}/vmap
   ${CMAKE_CURRENT_SOURCE_DIR}/movemap
   ${CMAKE_SOURCE_DIR}/dep/include/g3dlite
@@ -24,6 +46,7 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/src/shared
   ${CMAKE_SOURCE_DIR}/src/shared/Database
   ${CMAKE_SOURCE_DIR}/src/framework
+  ${CMAKE_SOURCE_DIR}/src/framework/Network
   ${CMAKE_SOURCE_DIR}/src/scripts
   ${CMAKE_SOURCE_DIR}/src/scripts/include
   ${CMAKE_BINARY_DIR}
@@ -51,14 +74,7 @@ source_group("World/Handlers"
 )
 
 source_group("Motion generators"
-  REGULAR_EXPRESSION MoveMap|MoveMapSharedDefines|Generator|MotionMaster|Holder
-)
-
-source_group("Movement"
-  REGULAR_EXPRESSION spline|Spline|packet_builder
-  FILES
-    movement/typedefs.h
-    movement/util.cpp
+  REGULAR_EXPRESSION MoveMap|MoveMapSharedDefines|Movement|Holder|Motion|Traveller
 )
 
 source_group("Server"
@@ -85,6 +101,13 @@ source_group("References"
   REGULAR_EXPRESSION Reference|RefManager|ThreatManager
 )
 
+source_group("Anticheat"
+  REGULAR_EXPRESSION Anticheat
+)
+
+if(PCH)
+  include_directories(${CMAKE_CURRENT_BINARY_DIR})
+endif()
 add_library(game STATIC
   ${game_SRCS}
 )

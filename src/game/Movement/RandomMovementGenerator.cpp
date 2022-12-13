@@ -23,8 +23,8 @@
 #include "Map.h"
 #include "Util.h"
 
-#include "movement/MoveSplineInit.h"
-#include "movement/MoveSpline.h"
+#include "MoveSplineInit.h"
+#include "MoveSpline.h"
 
 template<>
 void RandomMovementGenerator<Creature>::_setRandomLocation(Creature &creature)

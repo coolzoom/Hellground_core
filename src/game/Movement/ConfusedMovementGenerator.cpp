@@ -23,8 +23,8 @@
 #include "Creature.h"
 #include "Player.h"
 
-#include "movement/MoveSplineInit.h"
-#include "movement/MoveSpline.h"
+#include "MoveSplineInit.h"
+#include "MoveSpline.h"
 
 template <>
 void ConfusedMovementGenerator<Player>::Initialize(Player &unit)

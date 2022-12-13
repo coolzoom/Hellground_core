@@ -24,7 +24,7 @@
 #include "../recastnavigation/Detour/Include/DetourNavMesh.h"
 #include "../recastnavigation/Detour/Include/DetourNavMeshQuery.h"
 
-#include "movement/MoveSplineInitArgs.h"
+#include "MoveSplineInitArgs.h"
 
 using Movement::Vector3;
 using Movement::PointsArray;

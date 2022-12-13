@@ -51,8 +51,8 @@
 #include "GameEvent.h"
 #include "CreatureGroups.h"
 
-#include "movement/MoveSplineInit.h"
-#include "movement/MoveSpline.h"
+#include "MoveSplineInit.h"
+#include "MoveSpline.h"
 
 // apply implementation of the singletons
 #include "Map.h"

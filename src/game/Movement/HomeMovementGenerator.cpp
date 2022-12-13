@@ -25,8 +25,8 @@
 #include "ObjectAccessor.h"
 #include "WorldPacket.h"
 
-#include "movement/MoveSplineInit.h"
-#include "movement/MoveSpline.h"
+#include "MoveSplineInit.h"
+#include "MoveSpline.h"
 
 void HomeMovementGenerator<Creature>::Initialize(Creature & owner)
 {

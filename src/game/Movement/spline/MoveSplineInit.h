@@ -21,7 +21,7 @@
 #define HELLGROUND_MOVESPLINEINIT_H
 
 #include "MoveSplineInitArgs.h"
-#include "movemap/PathFinder.h"
+#include "PathFinder.h"
 
 class Unit;
 
