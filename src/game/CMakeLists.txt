@@ -119,7 +119,7 @@ SET_TARGET_PROPERTIES (game PROPERTIES FOLDER "Game Libs")
 target_link_libraries(game
   shared
   Detour
-  lualib
+
   #scripts
 )
 
