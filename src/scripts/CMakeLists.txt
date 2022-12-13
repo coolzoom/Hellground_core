@@ -1,6 +1,6 @@
 set(LIBRARY_NAME scripts)
 
-file(GLOB_RECURSE SCRIPTS_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp *.h)
+file(GLOB_RECURSE scripts_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp *.h)
 
 set(scripts_STAT_SRCS
   ${scripts_STAT_SRCS}
