@@ -34,7 +34,7 @@
 #include "CellImpl.h"
 #include "InstanceSaveMgr.h"
 #include "Util.h"
-#include "TicketMgr.h"
+#include "GMTicketMgr.h"
 #include "GridMap.h"
 #include "Guild.h"
 #include "AccountMgr.h"

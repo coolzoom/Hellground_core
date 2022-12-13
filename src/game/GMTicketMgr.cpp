@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-#include "TicketMgr.h"
+#include "GMTicketMgr.h"
 #include "World.h"
 #include "ObjectMgr.h"
 #include "Language.h"

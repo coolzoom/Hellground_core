@@ -43,7 +43,7 @@
 #include <iostream>
 #include <fstream>
 #include <map>
-#include "TicketMgr.h"
+#include "GMTicketMgr.h"
 #include "CreatureAI.h"
 #include "ChannelMgr.h"
 #include "GuildMgr.h"

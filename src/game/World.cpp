@@ -58,7 +58,7 @@
 #include "GridNotifiersImpl.h"
 #include "CellImpl.h"
 #include "InstanceSaveMgr.h"
-#include "TicketMgr.h"
+#include "GMTicketMgr.h"
 #include "Util.h"
 #include "Language.h"
 #include "CreatureGroups.h"
