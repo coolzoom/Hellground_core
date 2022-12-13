@@ -37,18 +37,20 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/Threat
   ${CMAKE_CURRENT_SOURCE_DIR}/Transports
   ${CMAKE_CURRENT_SOURCE_DIR}/vmap
-  ${CMAKE_CURRENT_SOURCE_DIR}/movemap
   ${CMAKE_SOURCE_DIR}/dep/include/g3dlite
   ${CMAKE_SOURCE_DIR}/dep/recastnavigation/Detour
   ${CMAKE_SOURCE_DIR}/dep/recastnavigation
   ${CMAKE_SOURCE_DIR}/dep/include
   ${CMAKE_SOURCE_DIR}/src/game/PlayerBots
   ${CMAKE_SOURCE_DIR}/src/shared
+  ${CMAKE_SOURCE_DIR}/src/shared/Auth
+  ${CMAKE_SOURCE_DIR}/src/shared/Config
   ${CMAKE_SOURCE_DIR}/src/shared/Database
   ${CMAKE_SOURCE_DIR}/src/framework
   ${CMAKE_SOURCE_DIR}/src/framework/Network
   ${CMAKE_SOURCE_DIR}/src/scripts
   ${CMAKE_SOURCE_DIR}/src/scripts/include
+
   ${CMAKE_BINARY_DIR}
   ${CMAKE_BINARY_DIR}/src/shared
   ${MYSQL_INCLUDE_DIR}
@@ -90,7 +92,7 @@ source_group("Chat Commands"
 )
 
 source_group("Tool"
-  REGULAR_EXPRESSION Language
+  REGULAR_EXPRESSION DatabaseCleaner|Language|PlayerDump
 )
 
 source_group("PlayerBots"
@@ -112,23 +114,25 @@ add_library(game STATIC
   ${game_SRCS}
 )
 
+SET_TARGET_PROPERTIES (game PROPERTIES FOLDER "Game Libs")
+
 target_link_libraries(game
   shared
-  g3dlib
-  detour
+  Detour
+  lualib
+  #scripts
 )
 
-if(UNIX)
-  # Both systems don't have libdl and don't need them
-  if (NOT (CMAKE_SYSTEM_NAME STREQUAL "FreeBSD" OR CMAKE_SYSTEM_NAME STREQUAL "NetBSD"))
-    target_link_libraries(game
-      dl
-    )
-  endif()
-endif()
+#add_dependencies(game revision.h)
 
-add_dependencies(game revision.h g3dlite)
-if(NOT ACE_USE_EXTERNAL)
-  add_dependencies(game ACE_Project)
-# add_dependencies(game ace)
+# Generate precompiled header
+if(PCH)
+  if(MSVC OR XCODE)
+    if(MSVC)
+      set(game_pch "${CMAKE_CURRENT_SOURCE_DIR}/pchdef.cpp")
+    endif()
+    add_native_precompiled_header(game ${CMAKE_CURRENT_SOURCE_DIR}/pchdef.h)
+  elseif(CMAKE_COMPILER_IS_GNUCXX)
+    add_precompiled_header(game ${CMAKE_CURRENT_SOURCE_DIR}/pchdef.h)
+  endif()
 endif()

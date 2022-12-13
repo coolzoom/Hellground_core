@@ -33,6 +33,8 @@ add_library(framework STATIC
   ${framework_SRCS}
 )
 
+SET_TARGET_PROPERTIES (framework PROPERTIES FOLDER "Game Libs")
+
 if(NOT USE_STD_MALLOC)
   if(NOT TBB_USE_EXTERNAL)
     add_dependencies(framework TBB_Project)
