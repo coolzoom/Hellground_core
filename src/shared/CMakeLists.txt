@@ -5,6 +5,8 @@ if(WIN32)
   list(REMOVE_ITEM shared_SRCS
     PosixDaemon.h
     PosixDaemon.cpp
+    revision.h
+    migrations_list.h
   )
   if (NOT MSVC)
     list(REMOVE_ITEM shared_SRCS
@@ -19,6 +21,8 @@ else()
     WheatyExceptionReport.h
     ServiceWin32.cpp
     ServiceWin32.h
+    revision.h
+    migrations_list.h
   )
 endif()
 
@@ -74,3 +78,5 @@ endif(UNIX)
 if(MINGW)
   target_link_libraries(shared ${ACE_LIBRARIES} -lws2_32)
 endif()
+
+SET_TARGET_PROPERTIES (shared PROPERTIES FOLDER "Game Libs")

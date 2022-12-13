@@ -513,6 +513,46 @@ namespace VMAP
         return false;
     }
 
+	class UnderObjectCheckerCallback
+	{
+	public:
+	    UnderObjectCheckerCallback(std::vector<GroupModel> const& vals, Vector3 const& up, bool _ism2):
+	        prims(vals.begin()), hit(vals.end()), m2(_ism2), zVec(up), outDist(-1), inDist(-1) {}
+	    std::vector<GroupModel>::const_iterator prims;
+	    std::vector<GroupModel>::const_iterator hit;
+	    bool m2;
+	    Vector3 zVec;
+	    float outDist;
+	    float inDist;
+	    void operator()(Vector3 const& point, uint32 entry)
+	    {
+	        float currentOutDist = -1.0f;
+	        float currentInDist = -1.0f;
+	        prims[entry].IsUnderObject(point, zVec, m2, &currentOutDist, &currentInDist);
+	        if (outDist < 0 || (currentOutDist >= 0 && currentOutDist <= outDist))
+	            outDist = currentOutDist;
+	        if (inDist < 0 || (currentInDist >= 0 && currentInDist <= inDist))
+	            inDist = currentInDist;
+	    }
+	    bool UnderModel() const
+	    {
+	        return (outDist < 0 && inDist >= 0) || (0 <= inDist && inDist < outDist);
+	    }
+	};
+
+	bool WorldModel::IsUnderObject(G3D::Vector3 const& p, G3D::Vector3 const& up, bool m2, float* outDist, float* inDist) const
+	{
+	    if (groupModels.empty())
+	        return false;
+	    UnderObjectCheckerCallback callback(groupModels, up, m2);
+	    groupTree.intersectPoint(p, callback);
+	    if (outDist)
+	        *outDist = callback.outDist;
+	    if (inDist)
+	        *inDist = callback.inDist;
+	    return callback.UnderModel();
+	}
+
     bool WorldModel::writeFile(const std::string &filename)
     {
         FILE *wf = fopen(filename.c_str(), "wb");
