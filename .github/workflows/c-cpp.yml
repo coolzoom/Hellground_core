@@ -32,8 +32,8 @@ jobs:
     strategy:
       #matrix declaration
       matrix:
-        # os: [ubuntu-latest] # ubuntu20 is currently failed, TBD, known working compiler is gcc4.8
-        # compiler: [gcc, clang]
+        os: [ubuntu-latest] # ubuntu20 is currently failed, TBD, known working compiler is gcc4.8
+        compiler: [gcc, clang]
         include:
           - os: windows-2019
 
