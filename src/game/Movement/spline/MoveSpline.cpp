@@ -20,7 +20,6 @@
 #include "MoveSpline.h"
 #include <sstream>
 #include "Log.h"
-#include <Errors.h>
 
 namespace Movement{
 
@@ -30,7 +29,7 @@ extern float computeFallElevation(float time_passed);
 
 Location MoveSpline::ComputePosition() const
 {
-    MANGOS_ASSERT(Initialized());
+    ASSERT(Initialized());
 
     float u = 1.f;
     int32 seg_time = spline.length(point_Idx,point_Idx+1);
