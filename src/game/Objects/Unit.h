@@ -909,7 +909,7 @@ class HELLGROUND_IMPORT_EXPORT Unit : public WorldObject
         void CombatStop(bool cast = false);
         void CombatStopWithPets(bool cast = false);
         Unit* SelectNearbyTarget(float dist = NOMINAL_MELEE_RANGE, Unit* target = NULL) const;
-        uint8 Unit::GetEnemyCountInRadiusAround(Unit* pTarget, float radius) const;
+        uint8 GetEnemyCountInRadiusAround(Unit* pTarget, float radius) const;
         void SendMeleeAttackStop(Unit* victim);
         void SendMeleeAttackStart(uint64 victimGUID);
 

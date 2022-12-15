@@ -48,7 +48,7 @@ class HashMapHolder
 {
     public:
 
-        typedef std::unordered_map<uint64, T*>  MapType;
+        typedef UNORDERED_MAP<uint64, T*>  MapType;
         typedef ACE_Thread_Mutex LockType;
 
         static bool Insert(T* o)
@@ -119,8 +119,8 @@ class ObjectAccessor
     ObjectAccessor& operator=(const ObjectAccessor &);
 
     public:
-        typedef std::unordered_map<uint64, Corpse*> Player2CorpsesMapType;
-        typedef std::unordered_map<std::string, Player*> PlayerName2PlayerMapType;
+        typedef UNORDERED_MAP<uint64, Corpse*> Player2CorpsesMapType;
+        typedef UNORDERED_MAP<std::string, Player*> PlayerName2PlayerMapType;
 
         static Pet* GetPet(uint64 guid);
 

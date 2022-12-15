@@ -271,8 +271,8 @@ struct PlayerPremadeSpecTemplate
     std::string name;
     std::vector<uint32> spells;
 };
-typedef std::unordered_map<uint32, PlayerPremadeGearTemplate> PlayerPremadeGearMap;
-typedef std::unordered_map<uint32, PlayerPremadeSpecTemplate> PlayerPremadeSpecMap;
+typedef UNORDERED_MAP<uint32, PlayerPremadeGearTemplate> PlayerPremadeGearMap;
+typedef UNORDERED_MAP<uint32, PlayerPremadeSpecTemplate> PlayerPremadeSpecMap;
 
 class ObjectMgr
 {

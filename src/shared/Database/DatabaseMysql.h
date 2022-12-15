@@ -34,6 +34,15 @@
 #include <mysql.h>
 #endif
 
+#if MYSQL_VERSION_ID >= 80001
+typedef bool my_bool;
+#ifdef _MSC_VER
+#pragma message("You are using an incompatible mysql version!")
+#else
+#warning "You are using an incompatible mysql version!"
+#endif
+#endif
+
 //MySQL prepared statement class
 class MySqlPreparedStatement : public SqlPreparedStatement
 {
@@ -65,14 +74,6 @@ private:
     MYSQL_BIND * m_pResult;
     MYSQL_RES *m_pResultMetadata;
 
-#if MYSQL_VERSION_ID >= 80001
-    typedef bool my_bool;
-#ifdef _MSC_VER
-#pragma message("You are using an incompatible mysql version!")
-#else
-    #warning "You are using an incompatible mysql version!"
-#endif
-#endif
 };
 
 class MySQLConnection : public SqlConnection

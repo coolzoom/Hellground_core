@@ -588,7 +588,7 @@ struct CliCommandHolder
 // ye place for this sucks
 #define MAX_PVP_RANKS 14
 
-typedef std::unordered_map<uint32, std::list<uint64> > LfgContainerType;
+typedef UNORDERED_MAP<uint32, std::list<uint64> > LfgContainerType;
 typedef UNORDERED_MAP<uint32, WorldSession*> SessionMap;
 
 typedef ACE_Atomic_Op<ACE_Thread_Mutex, uint32> atomic_uint;
