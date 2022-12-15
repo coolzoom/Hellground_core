@@ -18,7 +18,7 @@
  */
 
 #include "Auth/Hmac.h"
-#include "Auth/WardenKeyGeneration.h"
+#include "WardenKeyGeneration.h"
 #include "AccountMgr.h"
 #include "Common.h"
 #include "WorldPacket.h"
