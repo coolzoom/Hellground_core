@@ -43,12 +43,18 @@ jobs:
     - uses: actions/checkout@v2
 
     #before install dependencies
+    - name: ubuntu old source
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        echo "deb http://security.ubuntu.com/ubuntu bionic-security main" | sudo tee -a /etc/apt/sources.list
+        sudo apt -qq update && apt-cache policy libssl1.0-dev 
+        sudo apt-get -qq install openssl libssl1.0-dev
     - name: ubuntu dependencies
       #ubuntu dependencies
       if: matrix.os == 'ubuntu-latest'
       run: |
         sudo apt-get -qq install libmysql++-dev libace-dev libtbb-dev
-        sudo apt-get -qq install cmake build-essential cppcheck git make libssl1.0-dev
+        sudo apt-get -qq install cmake build-essential cppcheck git make 
       #windows dependencies
     - name: windows dependencies
       if: matrix.os == 'windows-2019'
