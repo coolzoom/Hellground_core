@@ -20514,7 +20514,7 @@ void Player::LFGAttemptJoin()
         LfgContainerType::const_iterator a = lfgContainer.find(m_lookingForGroup.slots[i].Combine());
 
         // skip if container doesn't exist
-        if (a == lfgContainer.cend())
+        if (a == lfgContainer.end())
             continue;
 
         for (std::list<uint64>::const_iterator itr = a->second.begin(); itr != a->second.end(); ++itr)
@@ -20600,7 +20600,7 @@ void Player::LFMAttemptAddMore()
     // get player container for LFM id
     LfgContainerType & lfgContainer = sWorld.GetLfgContainer(GetTeam());
     LfgContainerType::const_iterator a = lfgContainer.find(m_lookingForGroup.more.Combine());
-    if (a == lfgContainer.cend())
+    if (a == lfgContainer.end())
         return;
 
     std::list<uint64> joinedList;

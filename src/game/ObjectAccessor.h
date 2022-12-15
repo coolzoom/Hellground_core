@@ -90,7 +90,7 @@ class HashMapHolder
         {
             typename MapType::const_iterator a = m_objectMap.find(guid);
 
-            if (a != m_objectMap.cend())
+            if (a != m_objectMap.end())
                 return a->second;
             else
                 return NULL;

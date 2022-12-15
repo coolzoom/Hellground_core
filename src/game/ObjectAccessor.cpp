@@ -54,7 +54,7 @@ Player* ObjectAccessor::GetPlayerByName(const char *name)
 {
     std::string tmp = name;
     PlayerName2PlayerMapType::const_iterator a = i_playerName2Player.find(tmp);
-    if (a != i_playerName2Player.cend())
+    if (a != i_playerName2Player.end())
         if (a->second->IsInWorld())
             return a->second;
 
@@ -64,7 +64,7 @@ Player* ObjectAccessor::GetPlayerByName(const char *name)
 Player* ObjectAccessor::GetPlayerByName(std::string &name)
 {
     PlayerName2PlayerMapType::const_iterator a = i_playerName2Player.find(name);
-    if (a != i_playerName2Player.cend())
+    if (a != i_playerName2Player.end())
         if (a->second->IsInWorld())
             return a->second;
 
@@ -152,7 +152,7 @@ Corpse * ObjectAccessor::GetCorpse(WorldObject const &u, uint64 guid)
 Corpse* ObjectAccessor::GetCorpseForPlayerGUID(uint64 guid)
 {
     Player2CorpsesMapType::const_iterator a = i_player2corpse.find(guid);
-    if (a != i_player2corpse.cend())
+    if (a != i_player2corpse.end())
     {
         ASSERT(a->second->GetType() != CORPSE_BONES);
         return a->second;
@@ -166,7 +166,7 @@ void ObjectAccessor::RemoveCorpse(Corpse *corpse)
     ASSERT(corpse && corpse->GetType() != CORPSE_BONES);
 
     Player2CorpsesMapType::const_iterator a = i_player2corpse.find(corpse->GetOwnerGUID());
-    if (a == i_player2corpse.cend())
+    if (a == i_player2corpse.end())
         return;
 
     // build mapid*cellid -> guid_set map
