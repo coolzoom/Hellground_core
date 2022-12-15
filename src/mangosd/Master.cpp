@@ -19,7 +19,7 @@
  */
 
 /** \file
-    \ingroup Trinityd
+    \ingroup mangosd
 */
 
 #include <ace/OS_NS_signal.h>
@@ -122,7 +122,7 @@ int Master::Run()
     outstring_log("|  _  |/ _ \\ | | | __| '__/ _ \\| | | | '_ \\ / _` |");
     outstring_log("| | | |  __/ | | |_\\ \\ | | (_) | |_| | | | | (_| |");
     outstring_log("\\_| |_/\\___|_|_|\\____/_|  \\___/ \\__,_|_| |_|\\__,_|");
-    outstring_log("http://hellground.net based on http://TrinityCore.org");
+    outstring_log("hellground based on TrinityCore/MaNGOS");
     outstring_log("Hellground Script initializing %s", _FULLVERSION);
 
     /// worldd PID file creation
@@ -220,7 +220,7 @@ int Master::Run()
 
                 if(!curAff)
                 {
-                    sLog.outLog(LOG_DEFAULT, "ERROR: Processors marked in UseProcessors bitmask (hex) %x not accessible for Hellground. Accessible processors bitmask (hex): %x", Aff, appAff);
+                    sLog.outLog(LOG_DEFAULT, "ERROR: Processors marked in UseProcessors bitmask (hex) %x not accessible for mangosd. Accessible processors bitmask (hex): %x", Aff, appAff);
                 }
                 else
                 {
@@ -238,9 +238,9 @@ int Master::Run()
         if(Prio)
         {
             if(SetPriorityClass(hProcess, HIGH_PRIORITY_CLASS))
-                sLog.outString("HellgroundCore process priority class set to HIGH");
+                sLog.outString("mangosd process priority class set to HIGH");
             else
-                sLog.outLog(LOG_DEFAULT, "ERROR: Can't set HellgroundCore process priority class.");
+                sLog.outLog(LOG_DEFAULT, "ERROR: Can't set mangosd process priority class.");
         }
     }
     #endif

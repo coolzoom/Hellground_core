@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-/// \addtogroup Trinityd Trinity Daemon
+/// \addtogroup mangosd Mangos Daemon
 /// @{
 /// \file
 
@@ -37,8 +37,8 @@
 
 #ifdef WIN32
 #include "ServiceWin32.h"
-char serviceName[] = "Hellground";
-char serviceLongName[] = "hellground core service";
+char serviceName[] = "mangosd";
+char serviceLongName[] = "MaNGOS world service";
 char serviceDescription[] = "Massive Network Game Object Server";
 #else
 #include "PosixDaemon.h"
@@ -239,7 +239,7 @@ extern int main(int argc, char **argv)
     // at sMaster return function exist with codes
     // 0 - normal shutdown
     // 1 - shutdown at error
-    // 2 - restart command used, this code can be used by restarter for restart
+    // 2 - restart command used, this code can be used by restarter for restart mangosd
 }
 
 /// @}
