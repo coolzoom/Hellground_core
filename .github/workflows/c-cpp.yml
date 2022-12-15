@@ -46,6 +46,7 @@ jobs:
     - name: ubuntu old source
       if: matrix.os == 'ubuntu-latest'
       run: |
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
         echo "deb http://security.ubuntu.com/ubuntu bionic-security main" | sudo tee -a /etc/apt/sources.list
         sudo apt -qq update && apt-cache policy libssl1.0-dev 
         sudo apt-get -qq install openssl libssl1.0-dev
