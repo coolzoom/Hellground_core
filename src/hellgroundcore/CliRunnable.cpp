@@ -37,56 +37,6 @@
 #include "Player.h"
 #include "Chat.h"
 
-#if PLATFORM != WINDOWS
-#include <readline/readline.h>
-#include <readline/history.h>
-
-char * command_finder(const char* text, int state)
-{
-  static int idx,len;
-  const char* ret;
-  ChatCommand *cmd = ChatHandler::getCommandTable();
-
-  if(!state)
-    {
-      idx = 0;
-      len = strlen(text);
-    }
-
-  while(ret = cmd[idx].Name)
-    {
-      if(!cmd[idx].AllowConsole)
-    {
-    idx++;
-    continue;
-    }
-
-      idx++;
-      //printf("Checking %s \n", cmd[idx].Name);
-      if (strncmp(ret, text, len) == 0)
-    return mangos_strdup(ret);
-      if(cmd[idx].Name == NULL)
-    break;
-    }
-
-  return ((char*)NULL);
-
-}
-
-char ** cli_completion(const char * text, int start, int end)
-{
-  char ** matches;
-  matches = (char**)NULL;
-
-  if(start == 0)
-    matches = rl_completion_matches((char*)text,&command_finder);
-  else
-    rl_bind_key('\t',rl_abort);
-  return (matches);
-}
-
-#endif
-
 void utf8print(const char* str)
 {
 #if PLATFORM == PLATFORM_WINDOWS
