@@ -1,3 +1,5 @@
+[![CI build](https://github.com/coolzoom/Hellground_core/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/coolzoom/Hellground_core/actions/workflows/c-cpp.yml)
+
 **~~######################################################################################~~**
 
 HellGround Core (Wargate core) has been released as public as of Classic-TBC release.
