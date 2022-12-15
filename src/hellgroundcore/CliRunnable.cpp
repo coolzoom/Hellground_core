@@ -389,29 +389,54 @@ void CliRunnable::run()
     GameDataDatabase.ThreadStart();                                // let thread do safe mySQL requests
 
     char commandbuf[256];
-    bool canflush = true;
+
     ///- Display the list of available CLI functions then beep
     sLog.outString();
-    #if PLATFORM != WINDOWS
-    rl_attempted_completion_function = cli_completion;
-    #endif
+
     if(sConfig.GetBoolDefault("BeepAtStart", true))
         printf("\a");                                       // \a = Alert
+
+    // print this here the first time
+    // later it will be printed after command queue updates
+    printf("mangos>");
 
     ///- As long as the World is running (no World::m_stopEvent), get the command line and handle it
     while (!World::IsStopped())
     {
         fflush(stdout);
-
-        char *command_str ;             // = fgets(commandbuf,sizeof(commandbuf),stdin);
-
-        #if PLATFORM == WINDOWS
-        command_str = fgets(commandbuf,sizeof(commandbuf),stdin);
-        #else
-        rl_bind_key('\t',rl_complete);
-        command_str = readline("TC> ");
+        #ifdef linux
+        while (!kb_hit_return() && !World::IsStopped())
+            // With this, we limit CLI to 10commands/second
+            usleep(100);
+        if (World::IsStopped())
+            break;
         #endif
-        if (command_str != NULL)
+
+#ifndef WIN32
+
+        int retval;
+        do
+        {
+            fd_set rfds;
+            struct timeval tv;
+            tv.tv_sec = 1;
+            tv.tv_usec = 0;
+
+            FD_ZERO(&rfds);
+            FD_SET(0, &rfds);
+
+            retval = select(1, &rfds, nullptr, nullptr, &tv);
+        } while (!retval);
+
+        if (retval == -1)
+        {
+            World::StopNow(SHUTDOWN_EXIT_CODE);
+            break;
+        }
+#endif
+
+        char *command_str = fgets(commandbuf,sizeof(commandbuf),stdin);
+        if (command_str != nullptr)
         {
             for(int x=0;command_str[x];x++)
                 if(command_str[x]=='\r'||command_str[x]=='\n')
@@ -422,25 +447,17 @@ void CliRunnable::run()
 
             if(!*command_str)
             {
-                #if PLATFORM == WINDOWS
-                    printf("TC> ");
-                #endif
+                printf("mangos>");
                 continue;
             }
 
             std::string command;
             if(!consoleToUtf8(command_str,command))         // convert from console encoding to utf8
             {
-                #if PLATFORM == WINDOWS
-                printf("TC> ");
-                #endif
+                printf("mangos>");
                 continue;
             }
-            fflush(stdout);
             sWorld.QueueCliCommand(&utf8print,command.c_str());
-            #if PLATFORM != WINDOWS
-            add_history(command.c_str());
-            #endif
         }
         else if (feof(stdin))
         {
