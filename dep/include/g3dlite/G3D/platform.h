@@ -363,9 +363,9 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrev, LPSTR szCmdLine, int sw) {\
 #include <ciso646> // Defines _LIBCC_VERSION if linking against libc++ or does nothing
 #endif
 #if (!defined(_LIBCPP_VERSION) && defined(__APPLE__)) || (!defined(_LIBCPP_VERSION) && defined(__linux__))
-#   include <tr1/memory>
+//#   include <tr1/memory>
 #else
-#   include <memory>
+//#   include <memory>
 #endif
 
 namespace G3D {
