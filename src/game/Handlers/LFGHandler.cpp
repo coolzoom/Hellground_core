@@ -147,7 +147,7 @@ void WorldSession::SendLFM(uint32 type, uint32 entry)
     // get player container for LFM id
     LfgContainerType & lfgContainer = sWorld.GetLfgContainer(GetPlayer()->GetTeam());
     LfgContainerType::const_iterator a = lfgContainer.find(LFG_COMBINE(entry, type));
-    if (a != lfgContainer.cend())
+    if (a != lfgContainer.end())
     {
         for (std::list<uint64>::const_iterator itr = a->second.begin(); itr != a->second.end(); ++itr)
         {
