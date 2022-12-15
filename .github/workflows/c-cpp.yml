@@ -87,7 +87,7 @@ jobs:
         mkdir build
         mkdir _install
         cd build
-        cmake ../ -DCMAKE_INSTALL_PREFIX=../_install -DWITH_WARNINGS=0 -DUSE_EXTRACTORS=0 -DACE_USE_EXTERNAL=0 -DTBB_USE_EXTERNAL=0
+        cmake ../ -DCMAKE_INSTALL_PREFIX=../_install -DWITH_WARNINGS=0 -DUSE_EXTRACTORS=0 -DACE_USE_EXTERNAL=1 -DTBB_USE_EXTERNAL=1
         make -j2
         make install
     #windows
