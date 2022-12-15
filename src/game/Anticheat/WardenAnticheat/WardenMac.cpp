@@ -43,9 +43,9 @@ void WardenMac::Init(WorldSession *pClient, BigNumber *K)
 {
     Client = pClient;
     // Generate Warden Key
-    SHA1Randx WK(K->AsByteArray(), K->GetNumBytes());
-    WK.generate(InputKey, 16);
-    WK.generate(OutputKey, 16);
+    SHA1Randx WK(K->AsByteArray().data(), K->GetNumBytes());
+    WK.Generate(InputKey, 16);
+    WK.Generate(OutputKey, 16);
     /*
     Seed: 4D808D2C77D905C41A6380EC08586AFE (0x05 packet)
     Hash: <?> (0x04 packet)

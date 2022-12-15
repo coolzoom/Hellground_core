@@ -1,7 +1,8 @@
-/*
- * Copyright (C) 2005-2008 MaNGOS <http://getmangos.com/>
- * Copyright (C) 2008 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2008-2015 Hellground <http://hellground.net/>
+/**
+ * MaNGOS is a full featured server for World of Warcraft, supporting
+ * the following clients: 1.12.x, 2.4.3, 3.3.5a, 4.3.4a and 5.4.8
+ *
+ * Copyright (C) 2005-2014  MaNGOS project <http://getmangos.eu>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -10,18 +11,21 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * World of Warcraft, and all World of Warcraft or Warcraft art, images,
+ * and lore are copyrighted by Blizzard Entertainment, Inc.
  */
 
-#ifndef HELLGROUND_AUTHCRYPT_H
-#define HELLGROUND_AUTHCRYPT_H
+#ifndef MANGOS_H_AUTHCRYPT
+#define MANGOS_H_AUTHCRYPT
 
-#include <Common.h>
+#include "Common.h"
 #include <vector>
 
 class BigNumber;
@@ -32,24 +36,40 @@ class AuthCrypt
         AuthCrypt();
         ~AuthCrypt();
 
-        const static size_t CRYPTED_SEND_LEN = 4;
-        const static size_t CRYPTED_RECV_LEN = 6;
+        static size_t const CRYPTED_SEND_LEN = 4;
+        static size_t const CRYPTED_RECV_LEN = 6;
 
         void Init();
 
-        void SetKey(BigNumber *);
+        void SetKey(std::vector<uint8> const& key);
+        void SetKey(uint8* key, size_t len);
 
-        void DecryptRecv(uint8 *, size_t);
-        void EncryptSend(uint8 *, size_t);
+        void DecryptRecv(uint8*, size_t);
+        void EncryptSend(uint8*, size_t);
 
         bool IsInitialized() { return _initialized; }
 
-        static void GenerateKey(uint8 *, BigNumber *);
+        static void GenerateKey(uint8*, BigNumber*);
 
     private:
         std::vector<uint8> _key;
         uint8 _send_i, _send_j, _recv_i, _recv_j;
         bool _initialized;
 };
-#endif
 
+
+class NoCrypt
+{
+    public:
+        NoCrypt() {}
+
+        void Init() {}
+
+        void SetKey(std::vector<uint8> const& key) {}
+        void SetKey(uint8* key, size_t len) {}
+
+        void DecryptRecv(uint8*, size_t) {}
+        void EncryptSend(uint8*, size_t) {}
+};
+
+#endif

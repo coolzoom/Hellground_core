@@ -30,7 +30,7 @@
 #include "SharedDefines.h"
 #include "QueryResult.h"
 #include "AuctionHouseMgr.h"
-#include "WardenBase.h"
+#include "Warden.h"
 #include "Item.h"
 
 struct ItemPrototype;

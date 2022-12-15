@@ -1,7 +1,5 @@
 /*
- * Copyright (C) 2005-2008 MaNGOS <http://getmangos.com/>
- * Copyright (C) 2008 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2008-2015 Hellground <http://hellground.net/>
+ * Copyright (C) 2005-2012 MaNGOS <http://getmangos.com/>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -10,12 +8,12 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
 #include "Auth/BigNumber.h"
@@ -25,26 +23,22 @@
 BigNumber::BigNumber()
 {
     _bn = BN_new();
-    _array = NULL;
 }
 
-BigNumber::BigNumber(const BigNumber &bn)
+BigNumber::BigNumber(BigNumber const& bn)
 {
     _bn = BN_dup(bn._bn);
-    _array = NULL;
 }
 
 BigNumber::BigNumber(uint32 val)
 {
     _bn = BN_new();
     BN_set_word(_bn, val);
-    _array = NULL;
 }
 
 BigNumber::~BigNumber()
 {
     BN_free(_bn);
-    if(_array) delete[] _array;
 }
 
 void BigNumber::SetDword(uint32 val)
@@ -59,16 +53,17 @@ void BigNumber::SetQword(uint64 val)
     BN_add_word(_bn, (uint32)(val & 0xFFFFFFFF));
 }
 
-void BigNumber::SetBinary(const uint8 *bytes, int len)
+void BigNumber::SetBinary(uint8 const* bytes, int len)
 {
     uint8 t[1000];
-    for (int i = 0; i < len; i++) t[i] = bytes[len - 1 - i];
+    for (int i = 0; i < len; i++)
+        t[i] = bytes[len - 1 - i];
     BN_bin2bn(t, len, _bn);
 }
 
-void BigNumber::SetHexStr(const char *str)
+int BigNumber::SetHexStr(const char* str)
 {
-    BN_hex2bn(&_bn, str);
+    return BN_hex2bn(&_bn, str);
 }
 
 void BigNumber::SetRand(int numbits)
@@ -76,25 +71,25 @@ void BigNumber::SetRand(int numbits)
     BN_rand(_bn, numbits, 0, 1);
 }
 
-BigNumber BigNumber::operator=(const BigNumber &bn)
+BigNumber BigNumber::operator=(BigNumber const& bn)
 {
     BN_copy(_bn, bn._bn);
     return *this;
 }
 
-BigNumber BigNumber::operator+=(const BigNumber &bn)
+BigNumber BigNumber::operator+=(BigNumber const& bn)
 {
     BN_add(_bn, _bn, bn._bn);
     return *this;
 }
 
-BigNumber BigNumber::operator-=(const BigNumber &bn)
+BigNumber BigNumber::operator-=(BigNumber const& bn)
 {
     BN_sub(_bn, _bn, bn._bn);
     return *this;
 }
 
-BigNumber BigNumber::operator*=(const BigNumber &bn)
+BigNumber BigNumber::operator*=(BigNumber const& bn)
 {
     BN_CTX *bnctx;
 
@@ -105,18 +100,18 @@ BigNumber BigNumber::operator*=(const BigNumber &bn)
     return *this;
 }
 
-BigNumber BigNumber::operator/=(const BigNumber &bn)
+BigNumber BigNumber::operator/=(BigNumber const& bn)
 {
     BN_CTX *bnctx;
 
     bnctx = BN_CTX_new();
-    BN_div(_bn, NULL, _bn, bn._bn, bnctx);
+    BN_div(_bn, nullptr, _bn, bn._bn, bnctx);
     BN_CTX_free(bnctx);
 
     return *this;
 }
 
-BigNumber BigNumber::operator%=(const BigNumber &bn)
+BigNumber BigNumber::operator%=(BigNumber const& bn)
 {
     BN_CTX *bnctx;
 
@@ -127,7 +122,7 @@ BigNumber BigNumber::operator%=(const BigNumber &bn)
     return *this;
 }
 
-BigNumber BigNumber::Exp(const BigNumber &bn)
+BigNumber BigNumber::Exp(BigNumber const& bn)
 {
     BigNumber ret;
     BN_CTX *bnctx;
@@ -139,7 +134,7 @@ BigNumber BigNumber::Exp(const BigNumber &bn)
     return ret;
 }
 
-BigNumber BigNumber::ModExp(const BigNumber &bn1, const BigNumber &bn2)
+BigNumber BigNumber::ModExp(BigNumber const& bn1, BigNumber const& bn2)
 {
     BigNumber ret;
     BN_CTX *bnctx;
@@ -151,7 +146,7 @@ BigNumber BigNumber::ModExp(const BigNumber &bn1, const BigNumber &bn2)
     return ret;
 }
 
-int BigNumber::GetNumBytes(void)
+int BigNumber::GetNumBytes(void) const
 {
     return BN_num_bytes(_bn);
 }
@@ -166,51 +161,34 @@ bool BigNumber::isZero() const
     return BN_is_zero(_bn)!=0;
 }
 
-uint8 *BigNumber::AsByteArray(int minSize, bool rev)
+std::vector<uint8> BigNumber::AsByteArray(int minSize, bool reverse) const
 {
     int length = (minSize >= GetNumBytes()) ? minSize : GetNumBytes();
 
-    if (_array)
-    {
-        delete[] _array;
-        _array = NULL;
-    }
-    _array = new uint8[length];
-
+    std::vector<uint8> byteArray(length);
+    
     // If we need more bytes than length of BigNumber set the rest to 0
     if (length > GetNumBytes())
-        memset((void*)_array, 0, length);
+        memset((void*)byteArray.data(), 0, length);
 
-    BN_bn2bin(_bn, (unsigned char *)_array);
+    // Padding should add leading zeroes, not trailing
+    int paddingOffset = length - GetNumBytes();
 
-    if (rev)
-        std::reverse(_array, _array + length);
+    BN_bn2bin(_bn, (unsigned char*)byteArray.data() + paddingOffset);
 
-    return _array;
+    if (reverse)
+        std::reverse(byteArray.begin(), byteArray.end());
+
+
+    return byteArray;
 }
 
-ByteBuffer BigNumber::AsByteBuffer()
-{
-    ByteBuffer ret(GetNumBytes());
-    ret.append(AsByteArray(), GetNumBytes());
-    return ret;
-}
-
-std::vector<uint8> BigNumber::AsByteVector()
-{
-    std::vector<uint8> ret;
-    ret.resize(GetNumBytes());
-    memcpy(&ret[0], AsByteArray(), GetNumBytes());
-    return ret;
-}
-
-const char *BigNumber::AsHexStr()
+char const* BigNumber::AsHexStr()
 {
     return BN_bn2hex(_bn);
 }
 
-const char *BigNumber::AsDecStr()
+char const* BigNumber::AsDecStr()
 {
     return BN_bn2dec(_bn);
 }
-

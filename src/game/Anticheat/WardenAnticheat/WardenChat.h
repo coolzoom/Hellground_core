@@ -20,7 +20,7 @@
 #define HELLGROUND_WARDEN_CHAT_H
 
 #include "ByteBuffer.h"
-#include "WardenBase.h"
+#include "Warden.h"
 
 class BigNumber;
 class WardenBase;

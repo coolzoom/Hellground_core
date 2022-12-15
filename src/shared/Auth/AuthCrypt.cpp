@@ -1,7 +1,8 @@
-/*
- * Copyright (C) 2005-2008 MaNGOS <http://getmangos.com/>
- * Copyright (C) 2008 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2008-2015 Hellground <http://hellground.net/>
+/**
+ * MaNGOS is a full featured server for World of Warcraft, supporting
+ * the following clients: 1.12.x, 2.4.3, 3.3.5a, 4.3.4a and 5.4.8
+ *
+ * Copyright (C) 2005-2014  MaNGOS project <http://getmangos.eu>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -10,12 +11,15 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * World of Warcraft, and all World of Warcraft or Warcraft art, images,
+ * and lore are copyrighted by Blizzard Entertainment, Inc.
  */
 
 #include "AuthCrypt.h"
@@ -32,10 +36,10 @@ void AuthCrypt::Init()
     _initialized = true;
 }
 
-void AuthCrypt::DecryptRecv(uint8 *data, size_t len)
+void AuthCrypt::DecryptRecv(uint8* data, size_t len)
 {
-    if (!_initialized) return;
-    if (len < CRYPTED_RECV_LEN) return;
+    if (!_initialized) { return; }
+    if (len < CRYPTED_RECV_LEN) { return; }
 
     for (size_t t = 0; t < CRYPTED_RECV_LEN; t++)
     {
@@ -47,10 +51,10 @@ void AuthCrypt::DecryptRecv(uint8 *data, size_t len)
     }
 }
 
-void AuthCrypt::EncryptSend(uint8 *data, size_t len)
+void AuthCrypt::EncryptSend(uint8* data, size_t len)
 {
-    if (!_initialized) return;
-    if (len < CRYPTED_SEND_LEN) return;
+    if (!_initialized) { return; }
+    if (len < CRYPTED_SEND_LEN) { return; }
 
     for (size_t t = 0; t < CRYPTED_SEND_LEN; t++)
     {
@@ -61,24 +65,33 @@ void AuthCrypt::EncryptSend(uint8 *data, size_t len)
     }
 }
 
-void AuthCrypt::SetKey(BigNumber *bn)
+void AuthCrypt::SetKey(std::vector<uint8> const& key)
 {
-    uint8 *key = new uint8[SHA_DIGEST_LENGTH];
-    GenerateKey(key, bn);
-    _key.resize(SHA_DIGEST_LENGTH);
-    std::copy(key, key + SHA_DIGEST_LENGTH, _key.begin());
-    delete [] key;
+    //MANGOS_ASSERT(key.size());
+    _key = key;
+    if (_key.empty())
+        _key.resize(1); // temp
 }
+
+void AuthCrypt::SetKey(uint8* key, size_t len)
+{
+    //MANGOS_ASSERT(len);
+    _key.resize(len);
+    std::copy(key, key + len, _key.begin());
+
+    if (_key.empty())
+        _key.resize(1);
+}
+
 
 AuthCrypt::~AuthCrypt()
 {
 }
 
-void AuthCrypt::GenerateKey(uint8 *key, BigNumber *bn)
+void AuthCrypt::GenerateKey(uint8* key, BigNumber* bn)
 {
     HmacHash hash;
     hash.UpdateBigNumber(bn);
     hash.Finalize();
     memcpy(key, hash.GetDigest(), SHA_DIGEST_LENGTH);
 }
-

@@ -1,5 +1,5 @@
 /*
- * This file is part of the CMaNGOS Project. See AUTHORS file for Copyright information
+ * Copyright (C) 2005-2012 MaNGOS <http://getmangos.com/>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,21 +16,21 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#include "Auth/Hmac.h"
+#include "Auth/HMACSHA1.h"
 #include "BigNumber.h"
 
-HmacHash::HmacHash(uint8 const* data, int length)
+HMACSHA1::HMACSHA1(uint32 len, uint8* seed)
 {
 #if defined(OPENSSL_VERSION_NUMBER) && OPENSSL_VERSION_NUMBER >= 0x10100000L
     m_ctx = HMAC_CTX_new();
-    HMAC_Init_ex(m_ctx, data, length, EVP_sha1(), nullptr);
+    HMAC_Init_ex(m_ctx, seed, len, EVP_sha1(), nullptr);
 #else
     HMAC_CTX_init(&m_ctx);
-    HMAC_Init_ex(&m_ctx, data, length, EVP_sha1(), nullptr);
+    HMAC_Init_ex(&m_ctx, seed, len, EVP_sha1(), nullptr);
 #endif
 }
 
-HmacHash::~HmacHash()
+HMACSHA1::~HMACSHA1()
 {
 #if defined(OPENSSL_VERSION_NUMBER) && OPENSSL_VERSION_NUMBER >= 0x10100000L
     HMAC_CTX_free(m_ctx);
@@ -39,12 +39,12 @@ HmacHash::~HmacHash()
 #endif
 }
 
-void HmacHash::UpdateBigNumber(BigNumber* bn)
+void HMACSHA1::UpdateBigNumber(BigNumber* bn)
 {
     UpdateData(bn->AsByteArray());
 }
 
-void HmacHash::UpdateData(std::vector<uint8> const& data)
+void HMACSHA1::UpdateData(std::vector<uint8> const& data)
 {
 #if defined(OPENSSL_VERSION_NUMBER) && OPENSSL_VERSION_NUMBER >= 0x10100000L
     HMAC_Update(m_ctx, data.data(), data.size());
@@ -53,7 +53,7 @@ void HmacHash::UpdateData(std::vector<uint8> const& data)
 #endif
 }
 
-void HmacHash::UpdateData(uint8 const* data, int length)
+void HMACSHA1::UpdateData(uint8 const* data, int length)
 {
 #if defined(OPENSSL_VERSION_NUMBER) && OPENSSL_VERSION_NUMBER >= 0x10100000L
     HMAC_Update(m_ctx, data, length);
@@ -62,13 +62,30 @@ void HmacHash::UpdateData(uint8 const* data, int length)
 #endif
 }
 
-void HmacHash::Finalize()
+void HMACSHA1::UpdateData(std::string const& str)
+{
+    UpdateData((uint8 const*)str.c_str(), str.length());
+}
+
+void HMACSHA1::Finalize()
 {
     uint32 length = 0;
 #if defined(OPENSSL_VERSION_NUMBER) && OPENSSL_VERSION_NUMBER >= 0x10100000L
     HMAC_Final(m_ctx, (uint8*)m_digest, &length);
 #else
-    HMAC_Final(&m_ctx, m_digest, &length);
+    HMAC_Final(&m_ctx, (uint8*)m_digest, &length);
 #endif
-    // MANGOS_ASSERT(length == SHA_DIGEST_LENGTH);
+    //MANGOS_ASSERT(length == SHA_DIGEST_LENGTH);
+}
+
+uint8* HMACSHA1::ComputeHash(BigNumber* bn)
+{
+    auto byteArray = bn->AsByteArray();
+#if defined(OPENSSL_VERSION_NUMBER) && OPENSSL_VERSION_NUMBER >= 0x10100000L
+    HMAC_Update(m_ctx, byteArray.data(), byteArray.size());
+#else
+    HMAC_Update(&m_ctx, byteArray.data(), byteArray.size());
+#endif
+    Finalize();
+    return (uint8*)m_digest;
 }

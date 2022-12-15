@@ -35,6 +35,7 @@
 #include "WardenWin.h"
 #include "WardenModuleWin.h"
 #include "WardenDataStorage.h"
+#include <Auth/HMACSHA1.h>
 
 WardenWin::WardenWin()
 {
@@ -48,9 +49,10 @@ void WardenWin::Init(WorldSession *pClient, BigNumber *K)
 {
     Client = pClient;
     // Generate Warden Key
-    SHA1Randx WK(K->AsByteArray(), K->GetNumBytes());
-    WK.generate(InputKey, 16);
-    WK.generate(OutputKey, 16);
+
+    SHA1Randx WK(K->AsByteArray().data(), K->AsByteArray().size());
+    WK.Generate(InputKey, 16);
+    WK.Generate(OutputKey, 16);
     /*
     Seed: 4D808D2C77D905C41A6380EC08586AFE (0x05 packet)
     Hash: 568C054C781A972A6037A2290C22B52571A06F4E (0x04 packet)
@@ -282,7 +284,7 @@ void WardenWin::RequestData()
             case PAGE_CHECK_A:
             case PAGE_CHECK_B:
             {
-                buff.append(wd->i.AsByteArray(0), wd->i.GetNumBytes());
+                buff.append(wd->i.AsByteArray(0, false).data(), wd->i.GetNumBytes());
                 buff << uint32(wd->Address);
                 buff << uint8(wd->Length);
                 break;
@@ -295,7 +297,7 @@ void WardenWin::RequestData()
             }
             case DRIVER_CHECK:
             {
-                buff.append(wd->i.AsByteArray(0), wd->i.GetNumBytes());
+                buff.append(wd->i.AsByteArray(0).data(), wd->i.GetNumBytes());
                 buff << uint8(index++);
                 break;
             }
@@ -303,7 +305,7 @@ void WardenWin::RequestData()
             {
                 uint32 seed = static_cast<uint32>(rand32());
                 buff << uint32(seed);
-                HmacHash hmac(4, (uint8*)&seed);
+                HMACSHA1 hmac(4, (uint8*)&seed);
                 hmac.UpdateData(wd->str);
                 hmac.Finalize();
                 buff.append(hmac.GetDigest(), hmac.GetLength());
@@ -421,13 +423,13 @@ void WardenWin::HandleData(ByteBuffer &buff)
                     continue;
                 }
 
-                if (memcmp(buff.contents() + buff.rpos(), rs->res.AsByteArray(0, false), rd->Length) != 0)
+                if (memcmp(buff.contents() + buff.rpos(), rs->res.AsByteArray(0, false).data(), rd->Length) != 0)
                 {
                     string tmpStrContentsRev, tmpStrContents, tmpStrByteArray;
 
                     uint8 * tmpContentsRev = new uint8[rd->Length];
                     uint8 * tmpContents = new uint8[rd->Length];
-                    uint8 * tmpByteArray = rs->res.AsByteArray(0, false);
+                    uint8 * tmpByteArray = rs->res.AsByteArray(0, false).data();
 
                     for (int i = 0; i < rd->Length; ++i)
                     {
@@ -528,7 +530,7 @@ void WardenWin::HandleData(ByteBuffer &buff)
                     continue;
                 }
 
-                if (memcmp(buff.contents() + buff.rpos(), rs->res.AsByteArray(0), 20) != 0) // SHA1
+                if (memcmp(buff.contents() + buff.rpos(), rs->res.AsByteArray(0).data(), 20) != 0) // SHA1
                 {
                     sLog.outLog(LOG_WARDEN, "RESULT MPQ_CHECK fail, CheckId %u account Id %u", *itr, Client->GetAccountId());
                     //found = true;

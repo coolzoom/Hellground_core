@@ -20,7 +20,7 @@
 #ifndef HELLGROUND_WARDEN_BASE_H
 #define HELLGROUND_WARDEN_BASE_H
 
-#include "Auth/SARC4.h"
+#include "Auth/ARC4.h"
 #include <map>
 #include "Auth/BigNumber.h"
 #include "ByteBuffer.h"
@@ -109,8 +109,8 @@ class WardenBase
         void SendModuleToClient();
         void RequestModule();
         void Update();
-        void DecryptData(uint8 *Buffer, uint32 Len);
-        void EncryptData(uint8 *Buffer, uint32 Len);
+        void DecryptData(uint8* buffer, size_t size);
+        void EncryptData(uint8* buffer, size_t size);
 
         static void PrintHexArray(const char *Before, const uint8 *Buffer, uint32 Len, bool BreakWithNewline);
         static bool IsValidCheckSum(uint32 checksum, const uint8 *Data, const uint16 Length, uint32 acc);
@@ -121,8 +121,8 @@ class WardenBase
         uint8 InputKey[16];
         uint8 OutputKey[16];
         uint8 Seed[16];
-        SARC4 iCrypto;
-        SARC4 oCrypto;
+        ARC4 iCrypto;
+        ARC4 oCrypto;
         Timer m_WardenCheckTimer;                          // timer between data packets
         bool m_WardenDataSent;
         uint32 m_WardenKickTimer;                           // time after send packet

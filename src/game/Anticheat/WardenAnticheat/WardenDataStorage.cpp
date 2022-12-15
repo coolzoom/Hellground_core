@@ -110,7 +110,7 @@ void WardenDataStorage::LoadWardenDataResult(bool reload)
             {
                 uint8 temp[24];
                 memset(temp, 0, len);
-                memcpy(temp, wd->i.AsByteArray(), wd->i.GetNumBytes());
+                memcpy(temp, wd->i.AsByteArray().data(), wd->i.GetNumBytes());
                 std::reverse(temp, temp + len);
                 wd->i.SetBinary((uint8*)temp, len);
             }
@@ -141,7 +141,7 @@ void WardenDataStorage::LoadWardenDataResult(bool reload)
             {
                 uint8 *temp = new uint8[len];
                 memset(temp, 0, len);
-                memcpy(temp, wr->res.AsByteArray(), wr->res.GetNumBytes());
+                memcpy(temp, wr->res.AsByteArray().data(), wr->res.GetNumBytes());
                 std::reverse(temp, temp + len);
                 wr->res.SetBinary((uint8*)temp, len);
                 delete [] temp;

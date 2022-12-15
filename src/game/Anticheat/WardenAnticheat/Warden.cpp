@@ -28,7 +28,7 @@
 #include "World.h"
 #include "Player.h"
 #include "Util.h"
-#include "WardenBase.h"
+#include "Warden.h"
 #include "WardenWin.h"
 
 WardenBase::WardenBase() : iCrypto(16), oCrypto(16), m_WardenCheckTimer(10000/*10 sec*/), m_WardenKickTimer(0), m_WardenDataSent(false),
@@ -159,14 +159,14 @@ void WardenBase::Update()
     }
 }
 
-void WardenBase::DecryptData(uint8 *Buffer, uint32 Len)
+void WardenBase::DecryptData(uint8* buffer, size_t size)
 {
-    iCrypto.UpdateData(Len, Buffer);
+    iCrypto.UpdateData(buffer, size);
 }
 
-void WardenBase::EncryptData(uint8 *Buffer, uint32 Len)
+void WardenBase::EncryptData(uint8* buffer, size_t size)
 {
-    oCrypto.UpdateData(Len, Buffer);
+    oCrypto.UpdateData(buffer, size);
 }
 
 void WardenBase::PrintHexArray(const char *Before, const uint8 *Buffer, uint32 Len, bool BreakWithNewline)

@@ -255,12 +255,12 @@ void AuthSocket::_SetVSFields(const std::string& rI)
     uint8 mDigest[SHA_DIGEST_LENGTH];
     memset(mDigest, 0, SHA_DIGEST_LENGTH);
     if (I.GetNumBytes() <= SHA_DIGEST_LENGTH)
-        memcpy(mDigest, I.AsByteArray(), I.GetNumBytes());
+        memcpy(mDigest, I.AsByteArray().data(), I.GetNumBytes());
 
     std::reverse(mDigest, mDigest + SHA_DIGEST_LENGTH);
 
     Sha1Hash sha;
-    sha.UpdateData(s.AsByteArray(), s.GetNumBytes());
+    sha.UpdateData(s.AsByteArray().data(), s.GetNumBytes());
     sha.UpdateData(mDigest, SHA_DIGEST_LENGTH);
     sha.Finalize();
     BigNumber x;
@@ -524,13 +524,13 @@ bool AuthSocket::_HandleLogonChallenge()
     pkt << uint8(WOW_SUCCESS);
 
     // B may be calculated < 32B so we force minimal length to 32B
-    pkt.append(B.AsByteArray(32), 32);      // 32 bytes
+    pkt.append(B.AsByteArray(32).data(), 32);      // 32 bytes
     pkt << uint8(1);
-    pkt.append(g.AsByteArray(), 1);
+    pkt.append(g.AsByteArray().data(), 1);
     pkt << uint8(32);
-    pkt.append(N.AsByteArray(32), 32);
-    pkt.append(s.AsByteArray(), s.GetNumBytes());// 32 bytes
-    pkt.append(unk3.AsByteArray(16), 16);
+    pkt.append(N.AsByteArray(32).data(), 32);
+    pkt.append(s.AsByteArray().data(), s.GetNumBytes());// 32 bytes
+    pkt.append(unk3.AsByteArray(16).data(), 16);
     uint8 securityFlags = 0;
     // Check if token is used
     _tokenKey = fields[3].GetString();
@@ -665,7 +665,7 @@ bool AuthSocket::_HandleLogonProof()
     uint8 t[32];
     uint8 t1[16];
     uint8 vK[40];
-    memcpy(t, S.AsByteArray(32), 32);
+    memcpy(t, S.AsByteArray(32).data(), 32);
     for (int i = 0; i < 16; ++i)
     {
         t1[i] = t[i * 2];
@@ -740,7 +740,7 @@ bool AuthSocket::_HandleLogonProof()
     M.SetBinary(sha.GetDigest(), 20);
 
     ///- Check if SRP6 results match (password is correct), else send an error
-    if (!memcmp(M.AsByteArray(), lp.M1, 20))
+    if (!memcmp(M.AsByteArray().data(), lp.M1, 20))
     {
         sLog.outBasic("User '%s' successfully authenticated", _login.c_str());
 
@@ -906,7 +906,7 @@ bool AuthSocket::_HandleReconnectChallenge()
     pkt << uint8(CMD_AUTH_RECONNECT_CHALLENGE);
     pkt << uint8(0x00);
     _reconnectProof.SetRand(16 * 8);
-    pkt.append(_reconnectProof.AsByteArray(16),16);         // 16 bytes random
+    pkt.append(_reconnectProof.AsByteArray(16).data(),16);         // 16 bytes random
     pkt << uint64(0x00) << uint64(0x00);                    // 16 bytes zeros
     send((char const*)pkt.contents(), pkt.size());
     _authed = STATUS_RECON_PROOF;

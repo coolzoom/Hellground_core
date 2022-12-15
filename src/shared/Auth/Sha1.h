@@ -1,7 +1,5 @@
 /*
- * Copyright (C) 2005-2008 MaNGOS <http://getmangos.com/>
- * Copyright (C) 2008 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2008-2015 Hellground <http://hellground.net/>
+ * Copyright (C) 2005-2012 MaNGOS <http://getmangos.com/>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -10,21 +8,22 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef HELLGROUND_AUTH_SHA1_H
-#define HELLGROUND_AUTH_SHA1_H
+#ifndef _AUTH_SHA1_H
+#define _AUTH_SHA1_H
 
 #include "Common.h"
 #include <openssl/sha.h>
 #include <openssl/crypto.h>
-#include "Auth/BigNumber.h"
+
+class BigNumber;
 
 class Sha1Hash
 {
@@ -32,23 +31,20 @@ class Sha1Hash
         Sha1Hash();
         ~Sha1Hash();
 
-        void UpdateFinalizeBigNumbers(BigNumber *bn0, ...);
-        void UpdateBigNumbers(BigNumber *bn0, ...);
+        void UpdateBigNumbers(BigNumber* bn0, ...);
 
-        void UpdateData(const uint8 *dta, int len);
-        void UpdateData(const std::string &str);
+        void UpdateData(uint8 const* dta, int len);
+        void UpdateData(std::string const& str);
+        void UpdateData(std::vector<uint8> const& data);
 
         void Initialize();
         void Finalize();
 
-        uint8 *GetDigest(void) { return mDigest; };
-        int GetLength(void) { return SHA_DIGEST_LENGTH; };
-
-        BigNumber GetBigNumber();
+        uint8* GetDigest(void) { return mDigest; };
+        static int GetLength(void) { return SHA_DIGEST_LENGTH; };
 
     private:
         SHA_CTX mC;
         uint8 mDigest[SHA_DIGEST_LENGTH];
 };
 #endif
-

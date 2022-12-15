@@ -1,7 +1,5 @@
 /*
- * Copyright (C) 2005-2008 MaNGOS <http://getmangos.com/>
- * Copyright (C) 2008 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2008-2015 Hellground <http://hellground.net/>
+ * Copyright (C) 2005-2012 MaNGOS <http://getmangos.com/>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -10,19 +8,19 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef HELLGROUND_AUTH_BIGNUMBER_H
-#define HELLGROUND_AUTH_BIGNUMBER_H
+#ifndef _AUTH_BIGNUMBER_H
+#define _AUTH_BIGNUMBER_H
 
 #include "Common.h"
-#include "ByteBuffer.h"
+#include <memory>
 
 struct bignum_st;
 
@@ -30,45 +28,45 @@ class BigNumber
 {
     public:
         BigNumber();
-        BigNumber(const BigNumber &bn);
+        BigNumber(BigNumber const& bn);
         BigNumber(uint32);
         ~BigNumber();
 
         void SetDword(uint32);
         void SetQword(uint64);
-        void SetBinary(const uint8 *bytes, int len);
-        void SetHexStr(const char *str);
+        void SetBinary(uint8 const* bytes, int len);
+        int SetHexStr(char const* str);
 
         void SetRand(int numbits);
 
-        BigNumber operator=(const BigNumber &bn);
+        BigNumber operator=(BigNumber const& bn);
 
-        BigNumber operator+=(const BigNumber &bn);
-        BigNumber operator+(const BigNumber &bn)
+        BigNumber operator+=(BigNumber const& bn);
+        BigNumber operator+(BigNumber const& bn)
         {
             BigNumber t(*this);
             return t += bn;
         }
-        BigNumber operator-=(const BigNumber &bn);
-        BigNumber operator-(const BigNumber &bn)
+        BigNumber operator-=(BigNumber const& bn);
+        BigNumber operator-(BigNumber const& bn)
         {
             BigNumber t(*this);
             return t -= bn;
         }
-        BigNumber operator*=(const BigNumber &bn);
-        BigNumber operator*(const BigNumber &bn)
+        BigNumber operator*=(BigNumber const& bn);
+        BigNumber operator*(BigNumber const& bn)
         {
             BigNumber t(*this);
             return t *= bn;
         }
-        BigNumber operator/=(const BigNumber &bn);
-        BigNumber operator/(const BigNumber &bn)
+        BigNumber operator/=(BigNumber const& bn);
+        BigNumber operator/(BigNumber const& bn)
         {
             BigNumber t(*this);
             return t /= bn;
         }
-        BigNumber operator%=(const BigNumber &bn);
-        BigNumber operator%(const BigNumber &bn)
+        BigNumber operator%=(BigNumber const& bn);
+        BigNumber operator%(BigNumber const& bn)
         {
             BigNumber t(*this);
             return t %= bn;
@@ -76,24 +74,20 @@ class BigNumber
 
         bool isZero() const;
 
-        BigNumber ModExp(const BigNumber &bn1, const BigNumber &bn2);
-        BigNumber Exp(const BigNumber &);
+        BigNumber ModExp(BigNumber const& bn1, BigNumber const& bn2);
+        BigNumber Exp(BigNumber const&);
 
-        int GetNumBytes(void);
+        int GetNumBytes(void) const;
 
-        struct bignum_st *BN() { return _bn; }
+        struct bignum_st* BN() { return _bn; }
 
         uint32 AsDword();
-        uint8* AsByteArray(int minSize = 0, bool rev = true);
-        ByteBuffer AsByteBuffer();
-        std::vector<uint8> AsByteVector();
+        std::vector<uint8> AsByteArray(int minSize = 0, bool reverse = true) const;
 
-        const char *AsHexStr();
-        const char *AsDecStr();
+        char const* AsHexStr();
+        char const* AsDecStr();
 
     private:
-        struct bignum_st *_bn;
-        uint8 *_array;
+        struct bignum_st* _bn;
 };
 #endif
-

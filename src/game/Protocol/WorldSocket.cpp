@@ -896,7 +896,7 @@ int WorldSocket::HandleAuthSession(WorldPacket& recvPacket)
     // NOTE ATM the socket is singlethreaded, have this in mind ...
     ACE_NEW_RETURN(m_Session, WorldSession(id, this, permissionMask, expansion, locale, mutetime, mutereason, trollmutetime, trollmutereason, accFlags, opcDis), -1);
 
-    m_Crypt.SetKey(&K);
+    m_Crypt.SetKey(K.AsByteArray());
     m_Crypt.Init();
 
     AccountsDatabase.escape_string(lastLocalIp);

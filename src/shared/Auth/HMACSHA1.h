@@ -1,5 +1,5 @@
 /*
- * This file is part of the CMaNGOS Project. See AUTHORS file for Copyright information
+ * Copyright (C) 2005-2012 MaNGOS <http://getmangos.com/>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,29 +16,30 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef _AUTH_HMAC_H
-#define _AUTH_HMAC_H
+#ifndef _AUTH_HMACSHA1_H
+#define _AUTH_HMACSHA1_H
 
 #include "Common.h"
 #include <openssl/hmac.h>
 #include <openssl/sha.h>
-#include <vector>
 
 class BigNumber;
 
-class HmacHash
+#define SEED_KEY_SIZE 16
+
+class HMACSHA1
 {
     public:
-        HmacHash() { }
-        HmacHash(uint8 const* data, int length);
-        ~HmacHash();
+        HMACSHA1(uint32 len, uint8* seed);
+        ~HMACSHA1();
         void UpdateBigNumber(BigNumber* bn);
         void UpdateData(std::vector<uint8> const& data);
         void UpdateData(uint8 const* data, int length);
-        void Initialize();
+        void UpdateData(std::string const& str);
         void Finalize();
-        uint8* GetDigest() { return m_digest; };
-        int GetLength() { return SHA_DIGEST_LENGTH; };
+        uint8* ComputeHash(BigNumber* bn);
+        uint8* GetDigest() { return (uint8*)m_digest; }
+        int GetLength() { return SHA_DIGEST_LENGTH; }
     private:
 
 #if defined(OPENSSL_VERSION_NUMBER) && OPENSSL_VERSION_NUMBER >= 0x10100000L
