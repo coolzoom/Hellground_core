@@ -24,12 +24,12 @@ if(WIN32)
   list(APPEND EXECUTABLE_SRCS
     mangosd.rc
   )
+  
+  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /D__ACE_INLINE__")
 endif()
 
 include_directories(
   ${CMAKE_SOURCE_DIR}/src/shared
-  ${CMAKE_SOURCE_DIR}/src/shared/Database
-  ${CMAKE_SOURCE_DIR}/dep/include
   ${CMAKE_SOURCE_DIR}/dep/include/gsoap
   ${CMAKE_SOURCE_DIR}/dep/include/g3dlite
   ${CMAKE_SOURCE_DIR}/src/framework
@@ -37,7 +37,6 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/src/game
   ${CMAKE_SOURCE_DIR}/src/game/AI
   ${CMAKE_SOURCE_DIR}/src/game/Anticheat
-  ${CMAKE_SOURCE_DIR}/src/game/Anticheat/WardenAnticheat
   ${CMAKE_SOURCE_DIR}/src/game/AuctionHouse
   ${CMAKE_SOURCE_DIR}/src/game/Battlegrounds
   ${CMAKE_SOURCE_DIR}/src/game/Chat
@@ -60,19 +59,11 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/src/game/Threat
   ${CMAKE_SOURCE_DIR}/src/game/Transports
   ${CMAKE_SOURCE_DIR}/src/game/vmap
-  ${CMAKE_SOURCE_DIR}/src/shared
-  ${CMAKE_SOURCE_DIR}/src/shared/Auth
-  ${CMAKE_SOURCE_DIR}/src/shared/Config
-  ${CMAKE_SOURCE_DIR}/src/shared/Database
-  ${CMAKE_SOURCE_DIR}/src/scripts
-
-  ${CMAKE_BINARY_DIR}
   ${CMAKE_BINARY_DIR}/src/shared
+  ${CMAKE_BINARY_DIR}
   ${ACE_INCLUDE_DIR}
   ${MYSQL_INCLUDE_DIR}
   ${OPENSSL_INCLUDE_DIR}
-  ${TBB_INCLUDE_DIRS}
-  ${ZLIB_INCLUDE_DIRS}
 )
 
 if(WIN32)
@@ -101,10 +92,6 @@ if(SCRIPTS)
     g3dlite
     gsoap
     ${ACE_LIBRARIES}
-    ${OPENSSL_LIBRARIES}
-    ${ZLIB_LIBRARIES}
-    ${TBB_LIBRARIES}
-	
   )
 else()
   target_link_libraries(${EXECUTABLE_NAME}
@@ -115,9 +102,6 @@ else()
     g3dlite
     gsoap
     ${ACE_LIBRARIES}
-    ${OPENSSL_LIBRARIES}
-    ${ZLIB_LIBRARIES}
-    ${TBB_LIBRARIES}
   )
 endif()
 
