@@ -23,6 +23,7 @@
 #include "spline.h"
 #include "MoveSplineInitArgs.h"
 #include "Log.h"
+#include <Errors.h>
 
 namespace Movement
 {
@@ -92,7 +93,7 @@ namespace Movement
         template<class UpdateHandler>
         void updateState(int32 difftime, UpdateHandler& handler)
         {
-            ASSERT(Initialized());
+            MANGOS_ASSERT(Initialized());
             do
                 handler(_updateState(difftime));
             while(difftime > 0);
@@ -100,7 +101,7 @@ namespace Movement
 
         void updateState(int32 difftime)
         {
-            ASSERT(Initialized());
+            MANGOS_ASSERT(Initialized());
             do _updateState(difftime);
             while(difftime > 0);
         }
